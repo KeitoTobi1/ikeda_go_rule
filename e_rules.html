@@ -1,0 +1,484 @@
+<HTML>
+<HEAD><TITLE>Proposed Rules of Go</TITLE></HEAD>
+<BODY BGCOLOR="#FFFFFF" BACKGROUND="images/bg01.gif">
+
+<P>
+<IMG SRC="images/e_t_rule.gif" ALT="Proposed Rules of Go" WIDTH="313" HEIGHT="48">
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Definitions (1)</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+<DL>
+<DT><FONT COLOR="#339900">n x n go board: </FONT>
+<DD>A grid comprising n equally spaced parallel lines and n other parallel lines orthogonally intersecting them is called an n x n go board.<P>
+
+<DT><FONT COLOR="#339900">grid line: </FONT>
+<DD>The parallel lines that intersect orthogonally on the board are called grid lines.<P>
+
+
+<DT><FONT COLOR="#339900">grid point: </FONT>
+<DD>The points of intersection of grid lines are called grid points.<P>
+
+<DT><FONT COLOR="#339900">empty grid point: </FONT>
+<DD>A grid point not occupied by a stone is called an empty grid point.<P>
+
+<DT><FONT COLOR="#339900">occupied grid point: </FONT>
+<DD>A grid point occupied by a stone is called an occupied grid point.<P>
+
+<DT><FONT COLOR="#339900">played stone: </FONT>
+<DD>A stone occupying a grid point is called a played stone.<P>
+
+<DT><FONT COLOR="#339900">adjacent points: </FONT>
+<DD>On the grid lines incident with a given grid point, the grid points closest to that grid point are called the adjacent points of that grid point.
+</DL>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Definitions (2)</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+<DL>
+<DT><FONT COLOR="#339900">play:</FONT>
+<DD>To play means to place a stone on an empty grid point.<P>
+
+<DT><FONT COLOR="#339900">remove:</FONT>
+<DD>To remove means to remove a played stone from a grid point.<P>
+
+
+<DT><FONT COLOR="#339900">move:</FONT>
+<DD>To move means to play or pass.<P>
+
+<DT><FONT COLOR="#339900">pass:</FONT>
+<DD>To pass means to proceed to the next turn without playing.
+</DL>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Definitions (3)</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+<DL>
+<DT><FONT COLOR="#339900">removable state:</FONT>
+<DD>A set of played stones of the same color is said to be in a removable state if all grid points that are not occupied by the set, but are adjacent points of grid points occupied by the set, are occupied by played stones of the other color.
+</DL>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Definitions (4)</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+<DL>
+<DT><FONT COLOR="#339900">configuration:</FONT>
+<DD>The arrangement of all played stones on the board is called a configuration.
+</DL>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Definitions (5)</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+<DL>
+<DT><FONT COLOR="#339900">territory:</FONT>
+<DD>If continued motion on the grid lines in a set of empty grid points, starting from any grid point in the set, always leads to played stones of the same color, that set of empty grid points is said to be territory of that color, and those played stones are said to surround that territory.
+</DL>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Rules</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+	<TABLE BORDER="0">
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 1</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Black and white stones:</FONT> One of the two players possesses black stones; the other player possesses white stones. The players play stones of their own possession.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 2</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of alternate moves:</FONT> The players move alternately. A player who fails to move loses.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 3</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of removing:</FONT> When a stone has been played, if a set of stones of the other color is in a removable state, that set of played stones is removed before the next move.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 4</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule prohibiting repeated configurations:</FONT> If playing on a grid point places any stones of the other color in a removable state, the configuration resulting from removal of those stones must not be identical to a configuration that has already appeared in the game.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 5</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule prohibiting self-capture:</FONT> If playing on a grid point does not place any stones of the other color in a removable state, the played stone itself must not be in a removable state.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 8</FONT> </TD>
+<TD VALIGN="top"><FONT COLOR="#CC6666">Rules establishing conditions of play:</FONT> Separate rules may be made concerning the first move (e.g. handicap stones) and determination of the winner (komi).</TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Area Rules I</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+	<TABLE BORDER="0">
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 6</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">End of the game:</FONT> The game ends when both players pass in succession.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 7</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of scoring:</FONT> A player's score is the number of that player's played stones. The winner is determined by comparing the players' scores.</TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Area Rules II</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+	<TABLE BORDER="0">
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 6</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">End of the game:</FONT> The game ends when both players pass in succession.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 7</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of scoring:</FONT> A player's score is the number of that player's played stones plus the number of grid points in that player's territory. The winner is determined by comparing the players' scores.</TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Area Rules III</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+	<TABLE BORDER="0">
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 6</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">End of the game:</FONT> After the first pass, the game ends when both players pass in succession.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 7</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of scoring:</FONT> A player's score is the number of that player's played stones plus the number of grid points in that player's territory. If the first pass was made by White, however, then 1/2 point is subtracted from Black's score and added to White's score. The winner is determined by comparing the players' scores.</TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Territory Rules I</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+	<TABLE BORDER="0">
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 6</FONT></TD>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC6666">End of the game</FONT></TD>
+	</TR>
+
+	<TR>
+	<TD VALIGN="top" NOWRAP><BR></TD>
+	<TD VALIGN="top">
+		<TABLE BORDER="0">
+		<TR>
+		<TD NOWRAP VALIGN="top"><FONT COLOR="#CC0000">6-1</FONT></TD>
+		<TD><FONT COLOR="#CC6666">Preliminary end:</FONT> When both players pass in succession, the game comes to a preliminary end. The players continue moving after the preliminary end.</TD>
+		</TR>
+		<TR>
+		<TD NOWRAP VALIGN="top"><FONT COLOR="#CC0000">6-2</FONT></TD>
+		<TD><FONT COLOR="#CC6666">Passing:</FONT> After the preliminary end, whenever a player passes, he gives one of his own stones to his opponent as a prisoner.</TD>
+		</TR>
+		<TR>
+		<TD NOWRAP VALIGN="top"><FONT COLOR="#CC0000">6-3</FONT></TD>
+		<TD><FONT COLOR="#CC6666">End of the game:</FONT> After the preliminary end, when both players pass in succession, the game ends.</TD>
+		</TR>
+		<TR>
+		<TD NOWRAP VALIGN="top"><FONT COLOR="#CC0000">6-4</FONT></TD>
+		<TD><FONT COLOR="#CC6666">Rule of equal number of moves:</FONT> If the final pass that ends the game is made by the player who moved first after the preliminary end, no prisoner is given for that final pass.</TD>
+		</TR>
+		</TABLE>
+	</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 7</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of scoring:</FONT> A player's score is the number of grid points in that player's territory minus the number of that player's stones removed or given up as prisoners. The winner is determined by comparing the players' scores.</TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Territory Rules II</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+	<TABLE BORDER="0">
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 6</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">End of the game:</FONT> Same as territory rules I.</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 7</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of scoring:</FONT> A player's score is the number of grid points in territory surrounded only by that player's immortal stones, minus the number of that player's stones removed or given up as prisoners and the number of non-immortal stones played by that player after the preliminary end. The winner is determined by comparing the players' scores.<BR>
+Immortal stones are played stones that cannot be removed even by consecutive play. Played stones that are not immortal stones are said to be non-immortal stones.</TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Territory Rules III</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+	<TABLE BORDER="0">
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 6</FONT></TD>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC6666">End of the game</FONT></TD>
+	</TR>
+
+	<TR>
+	<TD VALIGN="top" NOWRAP><BR></TD>
+	<TD VALIGN="top">
+		<TABLE BORDER="0">
+		<TR>
+		<TD NOWRAP VALIGN="top"><FONT COLOR="#CC0000">6-1</FONT></TD>
+		<TD><FONT COLOR="#CC6666">Passing:</FONT> Whenever a player passes, he gives one of his own stones to his opponent as a prisoner.</TD>
+		</TR>
+		<TR>
+		<TD NOWRAP VALIGN="top"><FONT COLOR="#CC0000">6-2</FONT></TD>
+		<TD><FONT COLOR="#CC6666">End of the game:</FONT> When both players pass in succession, the game ends.</TD>
+		</TR>
+		<TR>
+		<TD NOWRAP VALIGN="top"><FONT COLOR="#CC0000">6-3</FONT></TD>
+		<TD><FONT COLOR="#CC6666">Rule of equal number of moves:</FONT> If the final pass that ends the game is made by Black, no prisoner is given for that final pass.</TD>
+		</TR>
+		</TABLE>
+	</TD>
+	</TR>
+	<TR>
+	<TD VALIGN="top" NOWRAP><FONT COLOR="#CC0000">Rule 7</FONT> </TD>
+	<TD VALIGN="top"><FONT COLOR="#CC6666">Rule of scoring:</FONT> Same as territory rules I.</TD>
+	</TR>
+	</TABLE>
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="95%">
+<TR>
+<TH NOWRAP ALIGN="left"><FONT SIZE="+2">Notes</FONT></TH>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="90%">
+<TR>
+<TD>
+Area rules I correspond to rules formerly used in China. A player gains points by cutting his opponent into as many separate groups as possible, so there tends to be lots of cutting and fighting.<BR>
+Area rules II are equivalent to the rules followed in China now, except that China does not use the super-ko rule (rule 4).<BR>
+Area rules III adjust the score by one point when White passes first. This eliminates the one-point difference between area and territory rules that arises about half the time in even games from Black's having played an extra stone.<BR>
+Territory rules I give the same result as area rules III, provided no unwarranted passes are made before the end of competitive play. The main differences from traditional territory rules are that surrounded territory is counted in seki positions, and life and death are always settled through actual play.<BR>
+Territory rules II are contrived so as to nullify territory gained in a seki. Immortal stones cannot be captured even if the attacker makes consecutive moves and the defender always passes.<BR>
+Territory rules III give the same result as area rules II by ensuring that there are equal numbers of black and white stones on the board after prisoners are filled in. Although Ikeda did not include territory rules III in his formulations, it is a natural addition.<BR>
+By having the players compete to be first to pass, territory rules I and area rules III introduce an element of skill not found in traditional territory or area rules. Territory rules III and area rules II avoid introducing this new element.<BR>
+None of these rules make any provision for removing dead stones without further play at the end of the game. As Ikeda mentions in Part II, however, this can be done by mutual agreement after both sides have passed.
+</TD>
+</TR>
+</TABLE>
+</CENTER>
+</P>
+
+
+
+<P>
+<CENTER>
+<TABLE BORDER="0" CELLPADDING="3" CELLSPACING="5">
+<TR>
+<TD VALIGN="bottom"><A HREF="e_menu.html"><IMG SRC="images/e_menu.gif" ALT="INDEX" WIDTH="76" HEIGHT="31" BORDER="0"></A></TD>
+</TABLE>
+</CENTER>
+</P>
+
+</BODY>
+</HTML>
