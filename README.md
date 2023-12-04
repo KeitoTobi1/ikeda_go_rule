@@ -1,0 +1,1 @@
+# ikeda_go_rule
